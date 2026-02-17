@@ -5,14 +5,14 @@ public class Astronaut {
     String name;
     String spacecraft;
     AstronautStatus status;
-    int experiencedLevel;
+    int experienceLevel;
 
-    public Astronaut(int id, String name, String spacecraft, AstronautStatus status, int experiencedLevel) {
+    public Astronaut(int id, String name, String spacecraft, AstronautStatus status, int experienceLevel) {
         this.id = id;
         this.name = name;
         this.spacecraft = spacecraft;
         this.status = status;
-        this.experiencedLevel = experiencedLevel;
+        this.experienceLevel = experienceLevel;
     }
 
     public Astronaut() {
@@ -50,22 +50,20 @@ public class Astronaut {
         this.status = status;
     }
 
-    public int getExperiencedLevel() {
-        return experiencedLevel;
+    public int getExperienceLevel() {
+        return experienceLevel;
     }
 
-    public void setExperiencedLevel(int experiencedLevel) {
-        this.experiencedLevel = experiencedLevel;
+    public void setExperienceLevel(int experienceLevel) {
+        this.experienceLevel = experienceLevel;
     }
 
     @Override
     public String toString() {
-        return "Astronaut{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", spacecraft='" + spacecraft + '\'' +
-                ", status=" + status +
-                ", experiencedLevel=" + experiencedLevel +
-                '}';
+        return "[#"+ id +"]"+
+                name + " | " +
+                spacecraft + " | "+
+                status + " | " +
+                ", exp=" + experienceLevel;
     }
 }

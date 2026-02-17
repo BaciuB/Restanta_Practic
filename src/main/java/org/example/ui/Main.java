@@ -116,6 +116,39 @@ public class Main {
         System.out.println("\nWinning team: " + ranking.getFirst().getSpacecraft());
 
 
+        //7.)
+        System.out.println("\nCreating mission_report.txt...");
+        Map<MissionEventType, Integer> eventCount = new HashMap<>();
+
+        // inițializăm count-urile cu 0
+        for (MissionEventType type : MissionEventType.values()) {
+            eventCount.put(type, 0);
+        }
+
+        // numărăm evenimentele
+        for (MissionEvent e : events) {
+            MissionEventType type = e.getType();
+            eventCount.put(type, eventCount.get(type) + 1);
+        }
+
+        List<Map.Entry<MissionEventType, Integer>> sortedEventCount = eventCount.entrySet().stream()
+                .sorted(
+                        Comparator
+                                .comparingInt((Map.Entry<MissionEventType, Integer> entry) -> entry.getValue())
+                                .reversed()
+                                .thenComparing(entry -> entry.getKey().name())
+                )
+                .toList();
+
+        PrintWriter reportWriter = new PrintWriter("mission_report.txt");
+
+        for (MissionEventType type : MissionEventType.values()) {
+            reportWriter.println(type + " -> " + eventCount.get(type));
+        }
+
+        reportWriter.close();
+
+        System.out.println("mission_report.txt created successfully.");
 
     }
 }

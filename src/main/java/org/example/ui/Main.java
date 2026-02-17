@@ -42,6 +42,19 @@ public class Main {
         astronauts.stream().filter(d -> d.getSpacecraft().equalsIgnoreCase(spacecraft) && d.getStatus() == AstronautStatus.ACTIVE)
                 .forEach(System.out::println);
 
+        //3.)Sort astronauts by experience level (absteigend) und name (steigend)
+        System.out.println("\nSorted astronauts (skill desc, name asc):");
+
+        List<Astronaut> sortedAstronaut = astronauts.stream()
+                .sorted(
+                        Comparator.comparingInt(Astronaut::getExperienceLevel)
+                                .reversed()
+                                .thenComparing(Astronaut::getName)
+                )
+                .toList();
+
+        sortedAstronaut.forEach(System.out::println);
+
 
 
     }

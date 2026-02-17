@@ -35,6 +35,13 @@ public class Main {
         astronauts.forEach(System.out::println);
         Scanner scanner = new Scanner(System.in);
 
+        //2.)Enter a spacecraft name and display drivers from that team that have status "active"
+        System.out.println("\nEnter spacecraft name:");
+        String spacecraft = scanner.nextLine();
+        System.out.println("Active astronauts in spacecraft " + spacecraft + ":");
+        astronauts.stream().filter(d -> d.getSpacecraft().equalsIgnoreCase(spacecraft) && d.getStatus() == AstronautStatus.ACTIVE)
+                .forEach(System.out::println);
+
 
 
     }

@@ -143,7 +143,7 @@ public class Main {
         PrintWriter reportWriter = new PrintWriter("mission_report.txt");
 
         for (MissionEventType type : MissionEventType.values()) {
-            reportWriter.println(type + " -> " + eventCount.get(type));
+            reportWriter.println(type + " -> " + sortedEventCount.get(type.ordinal()).getValue());
         }
 
         reportWriter.close();

@@ -55,7 +55,16 @@ public class Main {
 
         sortedAstronaut.forEach(System.out::println);
 
+        //4.) Write sorted tributes to a file
+        PrintWriter writer = new PrintWriter("astronauts_sorted.txt.");
 
+        for (Astronaut a : sortedAstronaut) {
+            writer.println(a);
+        }
+
+        writer.close();
+
+        System.out.println("\nFile astronauts_sorted.txt. created.");
 
     }
 }

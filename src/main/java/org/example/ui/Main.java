@@ -72,6 +72,50 @@ public class Main {
                     + " -> computed=" + computed);
         });
 
+        //6.)
+        System.out.println("\nTop 5 Astronauts Ranking:");
+        Map<Integer, Integer> totalScores = new HashMap<>();
+        for (Astronaut a : astronauts) {
+
+            int total = 0;
+
+            // adunăm computedPoints din events
+            for (MissionEvent e : events) {
+                if (e.getAstronautId() == a.getId()) {
+                    total += service.computePoints(e);
+                }
+            }
+
+            // adunam value din supplies
+            for (Supply s : supplies) {
+                if (s.getAstronautId() == a.getId()) {
+                    total += s.getValue();
+                }
+            }
+
+            totalScores.put(a.getId(), total);
+        }
+
+        // sortăm
+        List<Astronaut> ranking = astronauts.stream()
+                .sorted(
+                        Comparator
+                                .comparingInt((Astronaut a) -> totalScores.get(a.getId()))
+                                .reversed()
+                                .thenComparing(Astronaut::getName)
+                )
+                .toList();
+
+        // afișăm top 5 si echipa castigatorului
+        for (int i = 0; i < 5 && i < ranking.size(); i++) {
+            Astronaut a = ranking.get(i);
+            int score = totalScores.get(a.getId());
+
+            System.out.println((i + 1) + ". " + a.getName() + "(" + a.getSpacecraft() + ")" + " -> " + score);
+        }
+        System.out.println("\nWinning team: " + ranking.getFirst().getSpacecraft());
+
+
 
     }
 }
